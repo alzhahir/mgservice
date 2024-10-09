@@ -12,6 +12,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  outputPath: '$(Build.ArtifactStagingDirectory)\\$(BuildConfiguration)\\bin'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -29,12 +30,12 @@ steps:
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
-    msbuildArgs: '/t:build /p:OutputPath="$(buildConfiguration)\\bin"'
+    msbuildArgs: '/t:build /p:OutputPath="$(outputPath)"'
     configuration: '$(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '**/bin/$(buildConfiguration)/'
+    PathtoPublish: '$(outputPath)'
     ArtifactName: 'Garnet'
     publishLocation: 'Container'
 
