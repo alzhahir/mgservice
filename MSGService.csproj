@@ -1,9 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <DebugType>embedded</DebugType>
     <UserSecretsId>dotnet-MSGService-f8945612-830b-4564-832a-aeaab88c11c3</UserSecretsId>
   </PropertyGroup>
 
