@@ -29,7 +29,7 @@ steps:
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
-    msbuildArgs: "/t:build /p:OutputPath='bin\\$(buildConfiguration)\\$(buildPlatform)\\'"
+    msbuildArgs: "/t:build /p:OutputPath='$(buildConfiguration)\\bin\\'"
     configuration: '$(buildConfiguration)'
 
 - task: PublishBuildArtifacts@1
