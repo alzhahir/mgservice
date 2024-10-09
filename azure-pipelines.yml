@@ -33,6 +33,12 @@ steps:
     msbuildArgs: '/t:build /p:OutputPath="$(outputPath)"'
     configuration: '$(buildConfiguration)'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '**/ServiceInstaller'
+    Contents: '*.ps1'
+    TargetFolder: '$(outputPath)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(outputPath)'
