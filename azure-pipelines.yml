@@ -11,7 +11,7 @@ pool: 'default'
 variables:
   solution: '**/*.sln'
   project: '**/*.csproj'
-  buildPlatform: 'Any CPU'
+  buildPlatform: 'Win-x64'
   buildConfiguration: 'Release'
   outputPath: '$(Build.ArtifactStagingDirectory)\\$(BuildConfiguration)\\bin'
 
@@ -37,13 +37,13 @@ steps:
   inputs:
     command: 'publish'
     projects: '$(project)'
-    arguments: '--configuration $(buildConfiguration) --output "$(outputPath)"'
+    arguments: '--configuration $(buildConfiguration) --output "$(outputPath)" --runtime $(buildPlatform)'
     publishWebProjects: false
     zipAfterPublish: false
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'ServiceInstaller/'
+    SourceFolder: 'ServiceInstaller'
     Contents: '*.ps1'
     TargetFolder: '$(outputPath)'
 
