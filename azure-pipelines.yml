@@ -37,7 +37,8 @@ steps:
   inputs:
     command: 'publish'
     projects: '$(project)'
-    arguments: '--configuration $(buildConfiguration) --output "$(outputPath)" --runtime $(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    arguments: '--output "$(outputPath)"'
     publishWebProjects: false
     zipAfterPublish: false
 
