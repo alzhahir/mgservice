@@ -37,8 +37,9 @@ steps:
   inputs:
     command: 'publish'
     projects: '$(project)'
-    arguments: '--configuration $(buildConfiguration)'
+    arguments: '--configuration $(buildConfiguration) --output "$(outputPath)"'
     publishWebProjects: false
+    zipAfterPublish: false
 
 - task: CopyFiles@2
   inputs:
