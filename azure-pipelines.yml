@@ -10,6 +10,7 @@ pool: 'default'
 
 variables:
   solution: '**/*.sln'
+  project: '**/*.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   outputPath: '$(Build.ArtifactStagingDirectory)\\$(BuildConfiguration)\\bin'
@@ -26,12 +27,17 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSBuild@1
+# - task: VSBuild@1
+#   inputs:
+#     solution: '$(solution)'
+#     platform: '$(buildPlatform)'
+#     msbuildArgs: '/t:build /p:OutputPath="$(outputPath)"'
+#     configuration: '$(buildConfiguration)'
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    msbuildArgs: '/t:build /p:OutputPath="$(outputPath)"'
-    configuration: '$(buildConfiguration)'
+    command: 'publish'
+    projects: '$(project)'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: CopyFiles@2
   inputs:
